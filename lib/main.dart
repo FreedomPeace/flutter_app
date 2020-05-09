@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'dart:ui';
 void main() {
   runApp(MyApp());
 }
@@ -26,7 +26,8 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      initialRoute: '/login',
+      home: MyHomePage(title: '登陆页面'),
     );
   }
 }
@@ -71,6 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+    TextEditingController editingController = new TextEditingController();
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -104,6 +106,51 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            Padding(
+                // Column is also a layout widget. It takes a list of children and
+                // arranges them vertically. By default, it sizes itself to fit its
+                // children horizontally, and tries to be as tall as its parent.
+                //
+                // Invoke "debug painting" (press "p" in the console, choose the
+                // "Toggle Debug Paint" action from the Flutter Inspector in Android
+                // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+                // to see the wireframe for each widget.
+                //
+                // Column has various properties to control how it sizes itself and
+                // how it positions its children. Here we use mainAxisAlignment to
+                // center the children vertically; the main axis here is the vertical
+                // axis because Columns are vertical (the cross axis would be
+                // horizontal).
+                padding: EdgeInsets.all(100),
+                child: TextField(
+                  controller: editingController,
+                  maxLength: 30,
+                  maxLines: 1,
+                  //是否自动更正
+                  autocorrect: true,
+                  //是否是密码
+                  obscureText: false,
+                  textAlign: TextAlign.center,
+                  //对齐方式
+                  style: TextStyle(fontSize: 26.0, color: Colors.green),
+                  onChanged: (text) {
+                    //长度变化
+                    print(text.length);
+                  },
+                  onSubmitted: (text) {
+                    print("内容提交时回调");
+                  },
+                  decoration: InputDecoration(
+                      fillColor: Colors.grey.shade200,
+                      //添加灰色填充色
+                      filled: true,
+                      //是否填充
+                      helperText: "用户名",
+                      prefixIcon: Icon(Icons.person),
+                      //左侧图标
+                      suffixText: "用户名" //右侧文本提示
+                      ),
+                )),
           ],
         ),
       ),
