@@ -1,14 +1,17 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-
+import 'package:flutterapp/main.dart';
+//void main() {
+//  runApp(Login());
+//}
 
 class Login extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter Login',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -121,8 +124,9 @@ class _MyLoginPageState extends State<MyLoginPage> {
           // Center is a layout widget. It takes a single child and positions it
           // in the middle of the parent.
           child: ListView(
-            padding: EdgeInsets.fromLTRB(100, 80, 100, 0),
+            padding: EdgeInsets.fromLTRB(10, 80, 10, 0),
         children: <Widget>[
+          Image.asset("assets/diamond.png"),
           Column(
             children: <Widget>[
               username,
@@ -148,6 +152,9 @@ class _MyLoginPageState extends State<MyLoginPage> {
 
               onPressed: () {
                 Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context){
+                  return MyApp();
+                }));
               },
               child: const Text('Next',
                   style: TextStyle(fontSize: 20,color: Colors.lightBlue)),
